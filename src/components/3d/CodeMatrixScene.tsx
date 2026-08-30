@@ -16,13 +16,13 @@ const SCENE_CONFIG = {
     initialZ: 7.5,
   },
   grid: {
-    size: 90,
-    divisions: 90,
+    size: 100,
+    divisions: 100,
     floorY: -2.8,
     ceilingY: 3.8,
-    floorColor: 0x00f2fe,
-    ceilingColor: 0x8b5cf6,
-    lineColor: 0x1e293b,
+    // Uniform colors for both center and secondary lines to eliminate bright cross lines
+    floorGridColor: 0x155e75, // Sleek uniform cyber cyan-slate
+    ceilingGridColor: 0x3730a3, // Sleek uniform cyber indigo-slate
     speed: 2.2,
   },
   particles: {
@@ -86,12 +86,12 @@ export default function CodeMatrixScene() {
     magentaPointLight.position.set(0, -3, 3);
     scene.add(magentaPointLight);
 
-    // 5. Infinite Cyber Grid Planes (Floor & Ceiling)
+    // 5. Infinite Cyber Grid Planes (Floor & Ceiling with 100% Uniform Lines)
     const gridFloor = new THREE.GridHelper(
       SCENE_CONFIG.grid.size,
       SCENE_CONFIG.grid.divisions,
-      SCENE_CONFIG.grid.floorColor,
-      SCENE_CONFIG.grid.lineColor
+      SCENE_CONFIG.grid.floorGridColor, // Center line matches grid line color
+      SCENE_CONFIG.grid.floorGridColor  // Uniform lines
     );
     gridFloor.position.y = SCENE_CONFIG.grid.floorY;
     scene.add(gridFloor);
@@ -99,8 +99,8 @@ export default function CodeMatrixScene() {
     const gridCeiling = new THREE.GridHelper(
       SCENE_CONFIG.grid.size,
       SCENE_CONFIG.grid.divisions,
-      SCENE_CONFIG.grid.ceilingColor,
-      0x0f172a
+      SCENE_CONFIG.grid.ceilingGridColor, // Center line matches grid line color
+      SCENE_CONFIG.grid.ceilingGridColor  // Uniform lines
     );
     gridCeiling.position.y = SCENE_CONFIG.grid.ceilingY;
     scene.add(gridCeiling);
@@ -211,7 +211,7 @@ export default function CodeMatrixScene() {
       targetX += (mouseX * 0.8 - targetX) * SCENE_CONFIG.mouseLag.x;
       targetY += (mouseY * 0.5 - targetY) * SCENE_CONFIG.mouseLag.y;
 
-      // Steady, elegant infinite forward grid motion
+      // Steady, seamless infinite forward grid motion
       gridOffset = (gridOffset + delta * SCENE_CONFIG.grid.speed) % 1;
       gridFloor.position.z = gridOffset;
       gridCeiling.position.z = gridOffset;
