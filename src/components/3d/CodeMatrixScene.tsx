@@ -8,30 +8,30 @@ import * as THREE from "three";
  */
 const SCENE_CONFIG = {
   bgColor: 0x030305,
-  fogDensity: 0.038,
+  fogDensity: 0.035,
   camera: {
-    fov: 55,
+    baseFov: 55,
     near: 0.1,
     far: 1000,
     initialZ: 7.5,
   },
   grid: {
-    size: 80,
-    divisions: 80,
+    size: 90,
+    divisions: 90,
     floorY: -2.8,
     ceilingY: 3.8,
     floorColor: 0x00f2fe,
     ceilingColor: 0x8b5cf6,
     lineColor: 0x1e293b,
-    baseSpeed: 2.2,
+    baseSpeed: 2.4,
   },
   particles: {
-    count: 850,
-    size: 0.05,
-    opacity: 0.75,
-    rangeX: 32,
-    rangeY: 16,
-    rangeZ: 25,
+    count: 950,
+    size: 0.055,
+    opacity: 0.85,
+    rangeX: 35,
+    rangeY: 18,
+    rangeZ: 28,
     colors: {
       cyan: 0x00f2fe,
       violet: 0xa855f7,
@@ -57,7 +57,7 @@ export default function CodeMatrixScene() {
 
     // 2. Camera Setup
     const camera = new THREE.PerspectiveCamera(
-      SCENE_CONFIG.camera.fov,
+      SCENE_CONFIG.camera.baseFov,
       container.clientWidth / container.clientHeight,
       SCENE_CONFIG.camera.near,
       SCENE_CONFIG.camera.far
@@ -74,15 +74,15 @@ export default function CodeMatrixScene() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
-    // 4. Scene Illumination
-    const ambientLight = new THREE.AmbientLight(0x0a1020, 1.8);
+    // 4. Scene Illumination (Dynamic Surge with Warp)
+    const ambientLight = new THREE.AmbientLight(0x0a1020, 2.0);
     scene.add(ambientLight);
 
-    const cyanPointLight = new THREE.PointLight(0x00f2fe, 8, 35);
+    const cyanPointLight = new THREE.PointLight(0x00f2fe, 9, 40);
     cyanPointLight.position.set(0, 3, 5);
     scene.add(cyanPointLight);
 
-    const magentaPointLight = new THREE.PointLight(0xa855f7, 6, 30);
+    const magentaPointLight = new THREE.PointLight(0xa855f7, 7, 35);
     magentaPointLight.position.set(0, -3, 3);
     scene.add(magentaPointLight);
 
@@ -150,7 +150,7 @@ export default function CodeMatrixScene() {
     const particleSystem = new THREE.Points(particlesGeometry, particlesMaterial);
     scene.add(particleSystem);
 
-    // 7. Mouse, Touch and Warp Speed State
+    // 7. Mouse, Touch and High-Intensity Warp Speed State
     let mouseX = 0;
     let mouseY = 0;
     let targetX = 0;
@@ -174,9 +174,9 @@ export default function CodeMatrixScene() {
       }
     };
 
-    // Trigger Hyperspace / Warp Speed on click or tap
+    // Intense Hyperspace / Warp Speed Trigger
     const handleTriggerWarp = () => {
-      targetWarpSpeed = 5.5; // Acceleration burst
+      targetWarpSpeed = 9.5; // High-intensity acceleration burst
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -194,7 +194,7 @@ export default function CodeMatrixScene() {
 
     window.addEventListener("resize", handleResize);
 
-    // 9. Animation Loop with Tab Visibility Optimization & Warp Decay
+    // 9. Animation Loop with Tab Visibility Optimization & Dynamic Warp Burst
     let animationFrameId: number;
     let lastTime = performance.now();
     let isTabActive = true;
@@ -219,30 +219,31 @@ export default function CodeMatrixScene() {
       targetX += (mouseX * 0.8 - targetX) * SCENE_CONFIG.mouseLag.x;
       targetY += (mouseY * 0.5 - targetY) * SCENE_CONFIG.mouseLag.y;
 
-      // Warp speed physics: smoothly decay back to 1.0
-      currentWarpSpeed += (targetWarpSpeed - currentWarpSpeed) * 0.08;
-      targetWarpSpeed += (1.0 - targetWarpSpeed) * 0.045;
+      // Warp speed physics: Fast surge, smooth decaying back to 1.0
+      currentWarpSpeed += (targetWarpSpeed - currentWarpSpeed) * 0.11;
+      targetWarpSpeed += (1.0 - targetWarpSpeed) * 0.038;
 
-      // Advance infinite grid
+      // Advance infinite grid with hyperspace multiplier
       gridOffset = (gridOffset + delta * SCENE_CONFIG.grid.baseSpeed * currentWarpSpeed) % 1;
       gridFloor.position.z = gridOffset;
       gridCeiling.position.z = gridOffset;
 
-      // Dynamic FOV zoom during hyperspace
-      camera.fov = SCENE_CONFIG.camera.fov + (currentWarpSpeed - 1.0) * 2.2;
+      // Dramatic tunnel zoom FOV during warp speed
+      camera.fov = SCENE_CONFIG.camera.baseFov + (currentWarpSpeed - 1.0) * 4.0;
       camera.updateProjectionMatrix();
 
-      // Light tracking
+      // Dynamic light surge during warp speed
+      cyanPointLight.intensity = 9 + (currentWarpSpeed - 1.0) * 4.5;
       cyanPointLight.position.x = targetX * 4;
       cyanPointLight.position.y = 3 + targetY * 3;
 
       // Camera tilt
-      camera.position.x = targetX * 0.7;
+      camera.position.x = targetX * 0.75;
       camera.position.y = targetY * 0.5;
       camera.lookAt(0, 0, 0);
 
       // Particle rotation and warp speed stretch
-      particleSystem.rotation.y += delta * 0.025 * currentWarpSpeed;
+      particleSystem.rotation.y += delta * 0.03 * currentWarpSpeed;
 
       renderer.render(scene, camera);
     };

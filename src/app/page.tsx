@@ -38,30 +38,36 @@ export default function Home() {
     return () => window.removeEventListener("mousemove", updateSpotlight);
   }, []);
 
-  // 3. Developer Console Easter Egg (F12)
+  // 3. Compact Responsive Developer Console Easter Egg (F12)
   useEffect(() => {
-    const asciiBanner = `
- ██████╗ ██╗   ██╗██╗██████╗ ██╗   ██╗    ███████╗██╗   ██╗███████╗████████╗███████╗███╗   ███╗███████╗
-██╔═══██╗██║   ██║██║██╔══██╗██║   ██║    ██╔════╝╚██╗ ██╔╝██╔════╝╚══██╔══╝██╔════╝████╗ ████║██╔════╝
-██║   ██║██║   ██║██║██████╔╝██║   ██║    ███████╗ ╚████╔╝ ███████╗   ██║   █████╗  ██╔████╔██║███████╗
-██║▄▄ ██║██║   ██║██║██╔═══╝ ██║   ██║    ╚════██║  ╚██╔╝  ╚════██║   ██║   ██╔══╝  ██║╚██╔╝██║╚════██║
-╚██████╔╝╚██████╔╝██║██║     ╚██████╔╝    ███████║   ██║   ███████║   ██║   ███████╗██║ ╚═╝ ██║███████║
- ╚══▀▀═╝  ╚═════╝ ╚═╝╚═╝      ╚═════╝     ╚══════╝   ╚═╝   ╚══════╝   ╚═╝   ╚══════╝╚═╝     ╚═╝╚══════╝
-    `;
+    const compactAscii = [
+      "  ██████╗ ██╗   ██╗██╗██████╗ ██╗   ██╗",
+      " ██╔═══██╗██║   ██║██║██╔══██╗██║   ██║",
+      " ██║   ██║██║   ██║██║██████╔╝██║   ██║",
+      " ██║▄▄ ██║██║   ██║██║██╔═══╝ ██║   ██║",
+      " ╚██████╔╝╚██████╔╝██║██║     ╚██████╔╝",
+      "  ╚══▀▀═╝  ╚═════╝ ╚═╝╚═╝      ╚═════╝ ",
+      "  ███████╗██╗   ██╗███████╗████████╗███████╗███╗   ███╗███████╗",
+      "  ██╔════╝╚██╗ ██╔╝██╔════╝╚══██╔══╝██╔════╝████╗ ████║██╔════╝",
+      "  ███████╗ ╚████╔╝ ███████╗   ██║   █████╗  ██╔████╔██║███████╗",
+      "  ╚════██║  ╚██╔╝  ╚════██║   ██║   ██╔══╝  ██║╚██╔╝██║╚════██║",
+      "  ███████║   ██║   ███████║   ██║   ███████╗██║ ╚═╝ ██║███████║",
+      "  ╚══════╝   ╚═╝   ╚══════╝   ╚═╝   ╚══════╝╚═╝     ╚═╝╚══════╝",
+    ].join("\n");
 
     console.log(
-      "%c" + asciiBanner,
-      "color: #00f2fe; font-family: monospace; font-size: 10px; font-weight: bold; text-shadow: 0 0 10px rgba(0,242,254,0.8);"
+      "%c" + compactAscii,
+      "color: #00f2fe; font-family: monospace; font-size: 7.5px; line-height: 8.5px; font-weight: bold; text-shadow: 0 0 8px rgba(0,242,254,0.7);"
     );
     console.log(
       "%c[ SYSTEM STATUS: STEALTH MODE // INITIALIZING v1.0 ]\n" +
       "%cQuipu Systems S.A.C.S. — Software Engineering, Data & Intelligent Systems.\n" +
-      "%cTip: Click anywhere on screen to trigger Hyperspace Warp Speed.\n" +
+      "%c⚡ Tip: Click anywhere to trigger Hyperspace Warp Speed.\n" +
       "%cInquiries & Business: contact@quipusystems.dev",
-      "color: #38bdf8; font-weight: bold; font-family: monospace; font-size: 12px;",
+      "color: #38bdf8; font-weight: bold; font-family: monospace; font-size: 11px; margin-top: 4px;",
       "color: #10b981; font-family: monospace; font-size: 11px;",
-      "color: #c084fc; font-family: monospace; font-size: 11px; font-style: italic;",
-      "color: #94a3b8; font-family: monospace; font-size: 11px;"
+      "color: #c084fc; font-family: monospace; font-size: 10.5px; font-style: italic;",
+      "color: #94a3b8; font-family: monospace; font-size: 10.5px;"
     );
   }, []);
 
@@ -70,11 +76,11 @@ export default function Home() {
       {/* 3D Infinite Cyber Grid Canvas */}
       <CodeMatrixScene />
 
-      {/* Cyber Spotlight Glow Layer (Follows cursor) */}
+      {/* Vivid Cyber Spotlight Glow Layers (Follows cursor smoothly) */}
       <div
-        className="pointer-events-none fixed inset-0 z-10 transition-opacity duration-500 opacity-60"
+        className="pointer-events-none fixed inset-0 z-10 transition-opacity duration-300 opacity-90"
         style={{
-          background: `radial-gradient(700px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(0, 242, 254, 0.07), rgba(139, 92, 246, 0.03), transparent 75%)`,
+          background: `radial-gradient(650px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(0, 242, 254, 0.15), rgba(99, 102, 241, 0.08), transparent 70%), radial-gradient(350px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(192, 132, 252, 0.10), transparent 60%)`,
         }}
         aria-hidden="true"
       />
