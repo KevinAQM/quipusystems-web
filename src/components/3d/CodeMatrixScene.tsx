@@ -10,7 +10,7 @@ const SCENE_CONFIG = {
   bgColor: 0x030305,
   fogDensity: 0.035,
   camera: {
-    baseFov: 55,
+    fov: 55,
     near: 0.1,
     far: 1000,
     initialZ: 7.5,
@@ -23,7 +23,7 @@ const SCENE_CONFIG = {
     floorColor: 0x00f2fe,
     ceilingColor: 0x8b5cf6,
     lineColor: 0x1e293b,
-    baseSpeed: 2.4,
+    speed: 2.2,
   },
   particles: {
     count: 950,
@@ -57,7 +57,7 @@ export default function CodeMatrixScene() {
 
     // 2. Camera Setup
     const camera = new THREE.PerspectiveCamera(
-      SCENE_CONFIG.camera.baseFov,
+      SCENE_CONFIG.camera.fov,
       container.clientWidth / container.clientHeight,
       SCENE_CONFIG.camera.near,
       SCENE_CONFIG.camera.far
@@ -74,7 +74,7 @@ export default function CodeMatrixScene() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
-    // 4. Scene Illumination (Dynamic Surge with Warp)
+    // 4. Scene Illumination
     const ambientLight = new THREE.AmbientLight(0x0a1020, 2.0);
     scene.add(ambientLight);
 
@@ -150,13 +150,11 @@ export default function CodeMatrixScene() {
     const particleSystem = new THREE.Points(particlesGeometry, particlesMaterial);
     scene.add(particleSystem);
 
-    // 7. Mouse, Touch and High-Intensity Warp Speed State
+    // 7. Mouse & Touch Interaction Tracking
     let mouseX = 0;
     let mouseY = 0;
     let targetX = 0;
     let targetY = 0;
-    let targetWarpSpeed = 1.0;
-    let currentWarpSpeed = 1.0;
     let gridOffset = 0;
 
     const handleMouseMove = (event: MouseEvent) => {
@@ -174,14 +172,8 @@ export default function CodeMatrixScene() {
       }
     };
 
-    // Intense Hyperspace / Warp Speed Trigger
-    const handleTriggerWarp = () => {
-      targetWarpSpeed = 9.5; // High-intensity acceleration burst
-    };
-
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("touchmove", handleTouchMove, { passive: true });
-    window.addEventListener("pointerdown", handleTriggerWarp);
 
     // 8. Dynamic Resize Observer
     const handleResize = () => {
@@ -194,7 +186,7 @@ export default function CodeMatrixScene() {
 
     window.addEventListener("resize", handleResize);
 
-    // 9. Animation Loop with Tab Visibility Optimization & Dynamic Warp Burst
+    // 9. Smooth Animation Loop with Tab Visibility Optimization
     let animationFrameId: number;
     let lastTime = performance.now();
     let isTabActive = true;
@@ -219,31 +211,22 @@ export default function CodeMatrixScene() {
       targetX += (mouseX * 0.8 - targetX) * SCENE_CONFIG.mouseLag.x;
       targetY += (mouseY * 0.5 - targetY) * SCENE_CONFIG.mouseLag.y;
 
-      // Warp speed physics: Fast surge, smooth decaying back to 1.0
-      currentWarpSpeed += (targetWarpSpeed - currentWarpSpeed) * 0.11;
-      targetWarpSpeed += (1.0 - targetWarpSpeed) * 0.038;
-
-      // Advance infinite grid with hyperspace multiplier
-      gridOffset = (gridOffset + delta * SCENE_CONFIG.grid.baseSpeed * currentWarpSpeed) % 1;
+      // Steady, elegant infinite forward grid motion
+      gridOffset = (gridOffset + delta * SCENE_CONFIG.grid.speed) % 1;
       gridFloor.position.z = gridOffset;
       gridCeiling.position.z = gridOffset;
 
-      // Dramatic tunnel zoom FOV during warp speed
-      camera.fov = SCENE_CONFIG.camera.baseFov + (currentWarpSpeed - 1.0) * 4.0;
-      camera.updateProjectionMatrix();
-
-      // Dynamic light surge during warp speed
-      cyanPointLight.intensity = 9 + (currentWarpSpeed - 1.0) * 4.5;
+      // Light tracking
       cyanPointLight.position.x = targetX * 4;
       cyanPointLight.position.y = 3 + targetY * 3;
 
-      // Camera tilt
+      // Subtle camera tilt
       camera.position.x = targetX * 0.75;
       camera.position.y = targetY * 0.5;
       camera.lookAt(0, 0, 0);
 
-      // Particle rotation and warp speed stretch
-      particleSystem.rotation.y += delta * 0.03 * currentWarpSpeed;
+      // Particle subtle rotation
+      particleSystem.rotation.y += delta * 0.025;
 
       renderer.render(scene, camera);
     };
@@ -255,7 +238,6 @@ export default function CodeMatrixScene() {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("touchmove", handleTouchMove);
-      window.removeEventListener("pointerdown", handleTriggerWarp);
       window.removeEventListener("resize", handleResize);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
 

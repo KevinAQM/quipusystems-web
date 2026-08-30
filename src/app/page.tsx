@@ -62,25 +62,23 @@ export default function Home() {
     console.log(
       "%c[ SYSTEM STATUS: STEALTH MODE // INITIALIZING v1.0 ]\n" +
       "%cQuipu Systems S.A.C.S. — Software Engineering, Data & Intelligent Systems.\n" +
-      "%c⚡ Tip: Click anywhere to trigger Hyperspace Warp Speed.\n" +
       "%cInquiries & Business: contact@quipusystems.dev",
       "color: #38bdf8; font-weight: bold; font-family: monospace; font-size: 11px; margin-top: 4px;",
       "color: #10b981; font-family: monospace; font-size: 11px;",
-      "color: #c084fc; font-family: monospace; font-size: 10.5px; font-style: italic;",
       "color: #94a3b8; font-family: monospace; font-size: 10.5px;"
     );
   }, []);
 
   return (
-    <main className="relative w-screen h-screen min-h-screen flex flex-col items-center justify-center bg-[#030305] overflow-x-hidden overflow-y-auto select-none py-8 px-4 cursor-pointer">
+    <main className="relative w-screen h-screen min-h-screen flex flex-col items-center justify-center bg-[#030305] overflow-x-hidden overflow-y-auto select-none py-8 px-4">
       {/* 3D Infinite Cyber Grid Canvas */}
       <CodeMatrixScene />
 
-      {/* Vivid Cyber Spotlight Glow Layers (Follows cursor smoothly) */}
+      {/* Focused Cyber Spotlight Glow Layer (Tighter, sleek radius around cursor) */}
       <div
         className="pointer-events-none fixed inset-0 z-10 transition-opacity duration-300 opacity-90"
         style={{
-          background: `radial-gradient(650px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(0, 242, 254, 0.15), rgba(99, 102, 241, 0.08), transparent 70%), radial-gradient(350px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(192, 132, 252, 0.10), transparent 60%)`,
+          background: `radial-gradient(320px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(0, 242, 254, 0.20), rgba(99, 102, 241, 0.08), transparent 70%), radial-gradient(150px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(192, 132, 252, 0.15), transparent 60%)`,
         }}
         aria-hidden="true"
       />
@@ -104,7 +102,7 @@ export default function Home() {
         </header>
 
         {/* Hero Title */}
-        <h1 className="font-['VT323',monospace] text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-normal tracking-widest text-white uppercase arcade-title-glow glitch-hover cursor-pointer leading-none my-2 sm:my-4">
+        <h1 className="font-['VT323',monospace] text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-normal tracking-widest text-white uppercase arcade-title-glow glitch-hover cursor-default leading-none my-2 sm:my-4">
           COMING SOON
         </h1>
 
