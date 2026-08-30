@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { VT323, Space_Mono, Share_Tech_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -20,15 +20,44 @@ const shareTechMono = Share_Tech_Mono({
   variable: "--font-tech",
 });
 
+export const viewport: Viewport = {
+  themeColor: "#030305",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.quipusystems.dev"),
   title: "Quipu Systems | Coming Soon",
-  description: "Quipu Systems S.A.C.S. · Software Engineering, Automation & Intelligent Systems.",
+  description: "Digitalización · Software · Data · Automatización · IA",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-icon.png" }],
+  },
   openGraph: {
     title: "Quipu Systems | Coming Soon",
-    description: "Quipu Systems is cooking something fabulous.",
-    url: "https://www.quantumsystems.dev",
+    description: "Digitalización · Software · Data · Automatización · IA",
+    url: "https://www.quipusystems.dev",
     siteName: "Quipu Systems",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 835,
+        height: 823,
+        alt: "Quipu Systems Logo",
+      },
+    ],
+    locale: "es_PE",
     type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Quipu Systems | Coming Soon",
+    description: "Digitalización · Software · Data · Automatización · IA",
+    images: ["/og-image.jpg"],
   },
 };
 
