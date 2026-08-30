@@ -23,7 +23,7 @@ const SCENE_CONFIG = {
     floorColor: 0x00f2fe,
     ceilingColor: 0x8b5cf6,
     lineColor: 0x1e293b,
-    speed: 2.2,
+    baseSpeed: 2.2,
   },
   particles: {
     count: 850,
@@ -150,11 +150,14 @@ export default function CodeMatrixScene() {
     const particleSystem = new THREE.Points(particlesGeometry, particlesMaterial);
     scene.add(particleSystem);
 
-    // 7. Mouse and Touch Interaction Coordinates
+    // 7. Mouse, Touch and Warp Speed State
     let mouseX = 0;
     let mouseY = 0;
     let targetX = 0;
     let targetY = 0;
+    let targetWarpSpeed = 1.0;
+    let currentWarpSpeed = 1.0;
+    let gridOffset = 0;
 
     const handleMouseMove = (event: MouseEvent) => {
       const rect = container.getBoundingClientRect();
@@ -171,8 +174,14 @@ export default function CodeMatrixScene() {
       }
     };
 
+    // Trigger Hyperspace / Warp Speed on click or tap
+    const handleTriggerWarp = () => {
+      targetWarpSpeed = 5.5; // Acceleration burst
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("pointerdown", handleTriggerWarp);
 
     // 8. Dynamic Resize Observer
     const handleResize = () => {
@@ -185,30 +194,43 @@ export default function CodeMatrixScene() {
 
     window.addEventListener("resize", handleResize);
 
-    // 9. Animation Loop with Tab Visibility Optimization
+    // 9. Animation Loop with Tab Visibility Optimization & Warp Decay
     let animationFrameId: number;
-    const clock = new THREE.Clock();
+    let lastTime = performance.now();
     let isTabActive = true;
 
     const handleVisibilityChange = () => {
       isTabActive = !document.hidden;
+      if (isTabActive) {
+        lastTime = performance.now();
+      }
     };
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
-    const animate = () => {
+    const animate = (now: number) => {
       animationFrameId = requestAnimationFrame(animate);
 
-      if (!isTabActive) return; // Save GPU/battery when user is in another tab
+      if (!isTabActive) return; // Save GPU/battery when inactive
 
-      const elapsedTime = clock.getElapsedTime();
+      const delta = Math.min((now - lastTime) / 1000, 0.1);
+      lastTime = now;
 
       // Smooth mouse interpolation (Lerp)
       targetX += (mouseX * 0.8 - targetX) * SCENE_CONFIG.mouseLag.x;
       targetY += (mouseY * 0.5 - targetY) * SCENE_CONFIG.mouseLag.y;
 
-      // Infinite forward highway illusion
-      gridFloor.position.z = (elapsedTime * SCENE_CONFIG.grid.speed) % 1;
-      gridCeiling.position.z = (elapsedTime * SCENE_CONFIG.grid.speed) % 1;
+      // Warp speed physics: smoothly decay back to 1.0
+      currentWarpSpeed += (targetWarpSpeed - currentWarpSpeed) * 0.08;
+      targetWarpSpeed += (1.0 - targetWarpSpeed) * 0.045;
+
+      // Advance infinite grid
+      gridOffset = (gridOffset + delta * SCENE_CONFIG.grid.baseSpeed * currentWarpSpeed) % 1;
+      gridFloor.position.z = gridOffset;
+      gridCeiling.position.z = gridOffset;
+
+      // Dynamic FOV zoom during hyperspace
+      camera.fov = SCENE_CONFIG.camera.fov + (currentWarpSpeed - 1.0) * 2.2;
+      camera.updateProjectionMatrix();
 
       // Light tracking
       cyanPointLight.position.x = targetX * 4;
@@ -219,19 +241,20 @@ export default function CodeMatrixScene() {
       camera.position.y = targetY * 0.5;
       camera.lookAt(0, 0, 0);
 
-      // Particle rotation
-      particleSystem.rotation.y = elapsedTime * 0.025;
+      // Particle rotation and warp speed stretch
+      particleSystem.rotation.y += delta * 0.025 * currentWarpSpeed;
 
       renderer.render(scene, camera);
     };
 
-    animate();
+    animationFrameId = requestAnimationFrame(animate);
 
     // 10. Clean Component Teardown & Resource Disposal
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("pointerdown", handleTriggerWarp);
       window.removeEventListener("resize", handleResize);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
 
