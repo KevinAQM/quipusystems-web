@@ -45,16 +45,16 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/og-image.jpg",
-        width: 835,
-        height: 823,
-        alt: "Quipu Systems Logo",
+        width: 1200,
+        height: 630,
+        alt: "Quipu Systems",
       },
     ],
     locale: "es_PE",
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Quipu Systems | Coming Soon",
     description: "Digitalización · Software · Data · Automatización · IA",
     images: ["/og-image.jpg"],
