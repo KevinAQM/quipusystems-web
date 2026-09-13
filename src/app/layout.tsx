@@ -1,27 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { VT323, Space_Mono, Share_Tech_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const vt323 = VT323({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-arcade",
-});
-
-const spaceMono = Space_Mono({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-  variable: "--font-mono",
-});
-
-const shareTechMono = Share_Tech_Mono({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-tech",
-});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
 
 export const viewport: Viewport = {
-  themeColor: "#030305",
+  themeColor: "#080c0f",
   width: "device-width",
   initialScale: 1,
 };
@@ -69,9 +54,9 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${vt323.variable} ${spaceMono.variable} ${shareTechMono.variable} h-full antialiased dark`}
+      className={`${geist.variable} ${geistMono.variable}`}
     >
-      <body className="min-h-full flex flex-col bg-[#030305] text-[#00ffcc] selection:bg-[#00ffcc]/30 selection:text-white">
+      <body>
         {children}
       </body>
     </html>
