@@ -1,0 +1,21 @@
+Use case: stylized-concept.
+Create a new high-resolution square static brand artwork for Quipu Systems, suitable as reference for later 3D modeling. Image 1 is a MATERIAL, LIGHTING and CULTURAL FORM reference only: keep its refined dark graphite, satin silver, deep teal braided rope and black studio background, but drastically simplify to exactly TWELVE pendant cords. Image 2 is reference for rope knot anatomy only; do not reproduce any text, diagram, or extra cords.
+Subject: a physically believable Peruvian quipu, with one continuous thick twisted horizontal primary rope sagging in a shallow graceful curve. EXACTLY 12 separate pendant cords attached individually by small hitches. First group at left contains EXACTLY FIVE pendants; then a distinct empty gap of about two cord-spacings on the primary rope; second group at right contains EXACTLY SEVEN pendants. Absolutely no branches, no hidden pendants, no doubled hanging cords. Each pendant is one unambiguous visible continuous rope. 12 visible attachment points and 12 free ends. A gentle variation in cord length makes an elegant descending silhouette. Everything completely inside frame.
+The piece represents QUIPU SYSTEMS via a contemporary A=1 ... Z=26 key, expressed with decimal quipu knots. DO NOT DRAW LETTERS OR NUMERALS. Instead follow the following physical knot blueprint from left to right. Each pendant has TWO clear vertical data zones, tens higher, units lower. Attachment hitches on the primary rope are NOT data knots. There must be no decorative data knots or arbitrary repeated clusters anywhere.
+LEFT GROUP, five pendants:
+1 Q=17: exactly ONE small single overhand knot in upper tens zone; ONE long knot with SEVEN visible wraps in lower units zone.
+2 U=21: exactly TWO small separate overhand knots in upper zone; ONE figure-eight knot in lower zone.
+3 I=9: NO knot in upper zone (smooth rope there); ONE long knot with NINE visible wraps in lower zone.
+4 P=16: exactly ONE small overhand knot upper zone; ONE long knot with SIX visible wraps lower zone.
+5 U=21: exactly TWO small separate overhand knots upper zone; ONE figure-eight knot lower zone.
+RIGHT GROUP, seven pendants:
+6 S=19: ONE small overhand knot upper zone; ONE long knot with NINE visible wraps lower zone.
+7 Y=25: TWO small separate overhand knots upper zone; ONE long knot with FIVE visible wraps lower zone.
+8 S=19: ONE small overhand knot upper zone; ONE long knot with NINE visible wraps lower zone.
+9 T=20: TWO small separate overhand knots upper zone; NO lower knot, lower zone must be bare continuous rope.
+10 E=5: NO upper knot; ONE long knot with FIVE visible wraps lower zone.
+11 M=13: ONE small overhand knot upper zone; ONE long knot with THREE visible wraps lower zone.
+12 S=19: ONE small overhand knot upper zone; ONE long knot with NINE visible wraps lower zone.
+Preserve large lengths of plain visible rope between these zones, so upper knots and lower knots are visibly distinct and countable. Model actual tied rope knots, never beads, rings or mechanical sleeves.
+Art direction: premium precise studio CGI with tactile micro-braided fibers and organic cord construction, contemporary technology company identity grounded in Peruvian heritage. Silvery graphite ropes with selective deep turquoise strands, very subtle teal rim light. Simple softly finished cord ends with tiny restrained fray, no voluminous tassels. No plugs, metal connectors, giant central knot, torus, extra objects, people, text, logos or watermarks.
+Composition: near-front view with only slight depth to show roundness, all 12 ropes separated without crossings or occlusion, square high resolution preferably 2048x2048, subject occupies about 80% width and 78% height with dark negative space on every side. Near-black #080c0f seamless background, soft cinematic neutral studio highlights and restrained turquoise accents, no particles or fog. Prioritize exact TWELVE cord count, the FIVE-plus-SEVEN grouping, correct specified knot structure and a clean sculptural silhouette.
