@@ -1,5 +1,6 @@
 import Image from "next/image";
 import QuipuViewer from "@/components/3d/QuipuViewer";
+import ScrollDividers from "@/components/ScrollDividers";
 
 const whatsappUrl = `https://wa.me/51943526621?text=${encodeURIComponent("Hola, Quipu Systems. Me gustaría conversar sobre un proyecto para mi empresa.")}`;
 
@@ -51,6 +52,7 @@ function ServiceIcon({ type }: { type: (typeof services)[number]["type"] }) {
 export default function Home() {
   return (
     <div className="site-shell" id="inicio">
+      <ScrollDividers />
       <a className="skip-link" href="#contenido">Saltar al contenido</a>
       <header className="site-header container">
         <a className="brand" href="#inicio" aria-label="Quipu Systems, inicio">
@@ -153,7 +155,7 @@ export default function Home() {
           <div className="closing-note"><span className="status-dot" /><p>Nuestra nueva web está en construcción. Las buenas conexiones empiezan hoy.</p><span className="closing-tag">PRÓXIMAMENTE</span></div>
         </section>
       </main>
-      <footer className="site-footer container">
+      <footer className="site-footer section-divider container">
         <p>© {new Date().getFullYear()} QUIPU SYSTEMS</p>
         <p className="footer-focus">Software · Datos · Inteligencia artificial</p>
         <a href="#inicio">Volver al inicio <span aria-hidden="true">↑</span></a>

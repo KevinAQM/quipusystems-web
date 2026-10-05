@@ -15,6 +15,7 @@ Los botones principales abren WhatsApp en el número +51 943 526 621, con un men
 - Contacto: WhatsApp, número visible y correo corporativo. La página no limita la cobertura a una ciudad o país.
 - Metadatos: título y descripciones sobre software, datos e inteligencia artificial, con URL canónica.
 - Secciones: líneas horizontales de mayor contraste con un acento turquesa, aprovechando el espacio existente.
+- Progreso de lectura: el tramo turquesa de los cinco separadores crece en secuencia con el scroll y retrocede al subir. El último, encima del footer, se completa al llegar al final de la página. Se conserva el tramo inicial de 72 píxeles y el aspecto estático si JavaScript no está disponible. El controlador actualiza transformaciones sin volver a renderizar el contenido; recalcula el recorrido cuando cambia el tamaño de la página y respeta la preferencia de movimiento reducido al desactivar la transición.
 - Navegación interna: los enlaces apuntan al encabezado de cada sección, con un margen de encuadre de 28 píxeles en escritorio y 20 en móvil. «Volver al inicio» muestra también la cabecera.
 
 Fuente del contenido: manual de marca, dossier y catálogo vigentes de la biblioteca de Windows. La gratuidad corresponde a la reunión exploratoria; el diagnóstico y la implementación tienen su propio alcance y condiciones.
