@@ -50,10 +50,10 @@ function ServiceIcon({ type }: { type: (typeof services)[number]["type"] }) {
 
 export default function Home() {
   return (
-    <div className="site-shell">
+    <div className="site-shell" id="inicio">
       <a className="skip-link" href="#contenido">Saltar al contenido</a>
       <header className="site-header container">
-        <a className="brand" href="#" aria-label="Quipu Systems, inicio">
+        <a className="brand" href="#inicio" aria-label="Quipu Systems, inicio">
           <Image src="/logos/isotipo_quipu_nobg.png" width={40} height={40} alt="" className="brand-symbol" />
           <span>quipu<span className="brand-secondary">systems</span><span className="brand-dot">.</span></span>
         </a>
@@ -63,7 +63,7 @@ export default function Home() {
           <a className="contact-link" href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Hablemos por WhatsApp (abre una nueva pestaña)">Hablemos <Arrow diagonal /></a>
         </nav>
       </header>
-      <main id="contenido">
+      <main id="contenido" tabIndex={-1}>
         <section className="hero container" aria-labelledby="hero-title">
           <div className="hero-copy">
             <div className="launch-label"><span className="status-dot" /> NUESTRA NUEVA WEB ESTÁ EN CAMINO</div>
@@ -84,8 +84,8 @@ export default function Home() {
           </div>
           <div className="hero-baseline"><span>RAÍCES PROFUNDAS. VISIÓN HACIA ADELANTE.</span><a href="#servicios" aria-label="Explorar nuestras especialidades"><span>EXPLORA LO QUE HACEMOS</span><span className="scroll-arrow">↓</span></a></div>
         </section>
-        <section className="vision container" id="servicios" aria-labelledby="services-title">
-          <div className="vision-heading">
+        <section className="vision section-divider container" aria-labelledby="services-title">
+          <div className="vision-heading" id="servicios" tabIndex={-1}>
             <p className="eyebrow"><span className="small-cross">+</span> NUESTRAS ESPECIALIDADES</p>
             <h2 id="services-title">Las piezas correctas.<br /><span>Para lo que necesitas.</span></h2>
             <p>El quipu conectaba hilos para dar sentido a la información. Hoy conectamos seis especialidades para convertir tus necesidades en soluciones digitales.</p>
@@ -101,7 +101,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="possibilities container" aria-labelledby="possibilities-title">
+        <section className="possibilities section-divider container" aria-labelledby="possibilities-title">
           <div className="vision-heading">
             <p className="eyebrow"><span className="small-cross">+</span> LO QUE PODEMOS CONECTAR</p>
             <h2 id="possibilities-title">Problemas cotidianos.<br /><span>Nuevas posibilidades.</span></h2>
@@ -123,8 +123,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="approach container" id="enfoque" aria-labelledby="approach-title">
-          <div className="vision-heading">
+        <section className="approach section-divider container" aria-labelledby="approach-title">
+          <div className="vision-heading" id="enfoque" tabIndex={-1}>
             <p className="eyebrow"><span className="small-cross">+</span> NUESTRA FORMA DE TRABAJAR</p>
             <h2 id="approach-title">Primero, tu necesidad.<br /><span>Después, la tecnología.</span></h2>
             <p>Un responsable de proyecto coordina las especialidades y mantiene el contacto contigo, con entregables claros y validaciones durante el trabajo.</p>
@@ -139,8 +139,8 @@ export default function Home() {
           </ol>
         </section>
 
-        <section className="contact-section container" id="contacto" aria-labelledby="contact-title">
-          <div className="contact-copy">
+        <section className="contact-section section-divider container" aria-labelledby="contact-title">
+          <div className="contact-copy" id="contacto" tabIndex={-1}>
             <p className="eyebrow"><span className="status-dot" /> CONECTEMOS</p>
             <h2 id="contact-title">Tu próximo proyecto empieza<br /><span>con una conversación.</span></h2>
             <p>Cuéntanos qué quieres mejorar. La primera reunión exploratoria es gratuita y nos permite entender tu necesidad y definir el siguiente paso.</p>
@@ -154,9 +154,9 @@ export default function Home() {
         </section>
       </main>
       <footer className="site-footer container">
-        <p>© {new Date().getFullYear()} QUIPU SYSTEMS S.A.C.S.</p>
+        <p>© {new Date().getFullYear()} QUIPU SYSTEMS</p>
         <p className="footer-focus">Software · Datos · Inteligencia artificial</p>
-        <a href="#contenido">Volver al inicio <span aria-hidden="true">↑</span></a>
+        <a href="#inicio">Volver al inicio <span aria-hidden="true">↑</span></a>
       </footer>
     </div>
   );

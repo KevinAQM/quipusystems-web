@@ -14,6 +14,8 @@ Los botones principales abren WhatsApp en el número +51 943 526 621, con un men
 - Método: entender el proceso, acordar los entregables y validar con el cliente; un responsable coordina las especialidades.
 - Contacto: WhatsApp, número visible y correo corporativo. La página no limita la cobertura a una ciudad o país.
 - Metadatos: título y descripciones sobre software, datos e inteligencia artificial, con URL canónica.
+- Secciones: líneas horizontales de mayor contraste con un acento turquesa, aprovechando el espacio existente.
+- Navegación interna: los enlaces apuntan al encabezado de cada sección, con un margen de encuadre de 28 píxeles en escritorio y 20 en móvil. «Volver al inicio» muestra también la cabecera.
 
 Fuente del contenido: manual de marca, dossier y catálogo vigentes de la biblioteca de Windows. La gratuidad corresponde a la reunión exploratoria; el diagnóstico y la implementación tienen su propio alcance y condiciones.
 
