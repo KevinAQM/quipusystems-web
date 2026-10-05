@@ -13,8 +13,9 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.quipusystems.dev"),
-  title: "Quipu Systems | Coming Soon",
-  description: "Digitalización · Software · Data · Automatización · IA",
+  title: "Quipu Systems | Software, datos e inteligencia artificial",
+  description: "Software a medida, datos e inteligencia artificial para conectar y mejorar los procesos de tu empresa. Conversemos sobre tu proyecto. Primera reunión gratuita.",
+  alternates: { canonical: "/" },
   icons: {
     icon: [
       { url: "/favicon.ico" },
@@ -23,8 +24,8 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-icon.png" }],
   },
   openGraph: {
-    title: "Quipu Systems | Coming Soon",
-    description: "Digitalización · Software · Data · Automatización · IA",
+    title: "Quipu Systems | El futuro se construye conectando",
+    description: "Software a medida, datos e inteligencia artificial para tu empresa. Nuestra nueva web está en camino. Las buenas conexiones empiezan hoy.",
     url: "https://www.quipusystems.dev",
     siteName: "Quipu Systems",
     images: [
@@ -40,8 +41,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Quipu Systems | Coming Soon",
-    description: "Digitalización · Software · Data · Automatización · IA",
+    title: "Quipu Systems | El futuro se construye conectando",
+    description: "Software a medida, datos e inteligencia artificial para tu empresa. Nuestra nueva web está en camino. Las buenas conexiones empiezan hoy.",
     images: ["/og-image.jpg"],
   },
 };

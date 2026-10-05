@@ -1,12 +1,23 @@
 # Quipu Systems — dirección visual
 
-Landing de prelanzamiento con fondo grafito, tipografía Geist, acento turquesa, composición editorial y una escultura de un quipu como motivo principal. Conserva el isotipo original y las imágenes existentes para compartir en redes.
+Landing provisional con fondo grafito, tipografía Geist, acento turquesa y composición editorial. Conserva el isotipo, el quipu 3D interactivo y las imágenes existentes para compartir en redes. El aviso de construcción se refiere a la nueva web; la página permite contactar a Quipu desde ahora.
 
-La página se renderiza en el servidor. La imagen principal se sirve con Next Image y prioridad de carga; la antigua escena Three.js ya no forma parte del árbol de la página. La animación de entrada respeta `prefers-reduced-motion`.
+El contenido se renderiza en el servidor. El componente `QuipuViewer` carga la escena Three.js en el cliente y conserva su implementación actual. Los estilos respetan `prefers-reduced-motion`.
 
-Los enlaces de contacto abren `contact@quipusystems.dev` en el cliente de correo del visitante. No se recopilan correos ni se promete una fecha de lanzamiento.
+Los botones principales abren WhatsApp en el número +51 943 526 621, con un mensaje inicial que el visitante puede editar y enviar. El contacto alternativo abre `contacto@quipusystems.dev` en el cliente de correo. No se recopilan correos ni se promete una fecha de lanzamiento.
 
-## Recurso generado
+## Contenido y composición
+
+- Hero: «El futuro se construye conectando», propuesta de software a medida, datos e IA, aviso de nueva web y primera reunión exploratoria gratuita.
+- Especialidades: las seis áreas oficiales, en una cuadrícula de tres columnas en escritorio, dos en tablet y una en móvil.
+- Ejemplos de soluciones: campo y oficina, indicadores a partir de datos dispersos y flujos documentales. Se presentan como posibilidades, sin atribuirlos a proyectos de clientes.
+- Método: entender el proceso, acordar los entregables y validar con el cliente; un responsable coordina las especialidades.
+- Contacto: WhatsApp, número visible y correo corporativo. La página no limita la cobertura a una ciudad o país.
+- Metadatos: título y descripciones sobre software, datos e inteligencia artificial, con URL canónica.
+
+Fuente del contenido: manual de marca, dossier y catálogo vigentes de la biblioteca de Windows. La gratuidad corresponde a la reunión exploratoria; el diagnóstico y la implementación tienen su propio alcance y condiciones.
+
+## Recurso generado histórico
 
 - Archivo: `public/images/quipu-knot.png` (1254 × 1254).
 - Método: herramienta integrada `image_gen`, una generación.
