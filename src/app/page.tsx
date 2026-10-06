@@ -1,7 +1,6 @@
 import Image from "next/image";
 import QuipuViewer from "@/components/3d/QuipuViewer";
-
-const whatsappUrl = `https://wa.me/51943526621?text=${encodeURIComponent("Hola, Quipu Systems. Me gustaría conversar sobre un proyecto para mi empresa.")}`;
+import { site, whatsappUrl } from "@/lib/site";
 
 function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   return (
@@ -49,18 +48,54 @@ function ServiceIcon({ type }: { type: (typeof services)[number]["type"] }) {
 }
 
 export default function Home() {
+  const organizationId = `${site.url}/#organization`;
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": organizationId,
+        name: site.name,
+        url: site.url,
+        description: site.description,
+        logo: { "@type": "ImageObject", url: `${site.url}/logos/isotipo_quipu_nobg.png` },
+        email: site.email,
+        telephone: site.phone,
+        contactPoint: {
+          "@type": "ContactPoint", contactType: "sales", telephone: site.phone,
+          email: site.email, availableLanguage: "Spanish",
+        },
+      },
+      {
+        "@type": "WebSite", "@id": `${site.url}/#website`, url: site.url,
+        name: site.name, inLanguage: "es", publisher: { "@id": organizationId },
+      },
+      {
+        "@type": "WebPage", "@id": `${site.url}/#webpage`, url: site.url,
+        name: site.title, description: site.description, inLanguage: "es",
+        isPartOf: { "@id": `${site.url}/#website` }, about: { "@id": organizationId },
+      },
+      ...services.map((service) => ({
+        "@type": "Service", "@id": `${site.url}/#servicio-${service.type}`,
+        name: service.title, description: service.description,
+        provider: { "@id": organizationId },
+      })),
+    ],
+  };
+
   return (
     <div className="site-shell" id="inicio">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
       <a className="skip-link" href="#contenido">Saltar al contenido</a>
       <header className="site-header container">
         <a className="brand" href="#inicio" aria-label="Quipu Systems, inicio">
           <Image src="/logos/isotipo_quipu_nobg.png" width={40} height={40} alt="" className="brand-symbol" />
-          <span>quipu<span className="brand-secondary">systems</span><span className="brand-dot">.</span></span>
+          <span>quipu{" "}<span className="brand-secondary">systems</span><span className="brand-dot" aria-hidden="true">.</span></span>
         </a>
         <nav aria-label="Navegación principal">
           <a className="nav-vision" href="#servicios">Qué hacemos</a>
           <a className="nav-vision" href="#enfoque">Cómo trabajamos</a>
-          <a className="contact-link" href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Hablemos por WhatsApp (abre una nueva pestaña)">Hablemos <Arrow diagonal /></a>
+          <a className="contact-link" href={whatsappUrl} target="_blank" rel="noopener noreferrer" data-contact-channel="whatsapp" data-contact-location="header" aria-label="Hablemos por WhatsApp (abre una nueva pestaña)">Hablemos <Arrow diagonal /></a>
         </nav>
       </header>
       <main id="contenido" tabIndex={-1}>
@@ -71,7 +106,7 @@ export default function Home() {
             <p className="hero-description">Creamos software a medida, conectamos tus datos y automatizamos procesos con inteligencia artificial.</p>
             <p className="hero-invitation">Estamos preparando nuestra nueva web.<br />Mientras tanto, construyamos algo que le sirva a tu empresa.</p>
             <div className="hero-actions">
-              <a className="primary-link" href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Conversemos sobre tu proyecto por WhatsApp (abre una nueva pestaña)">Conversemos sobre tu proyecto <Arrow diagonal /></a>
+              <a className="primary-link" href={whatsappUrl} target="_blank" rel="noopener noreferrer" data-contact-channel="whatsapp" data-contact-location="hero" aria-label="Conversemos sobre tu proyecto por WhatsApp (abre una nueva pestaña)">Conversemos sobre tu proyecto <Arrow diagonal /></a>
               <a className="secondary-link" href="#servicios">Explora lo que hacemos <Arrow /></a>
             </div>
             <p className="meeting-note"><span className="status-dot" /> Primera reunión exploratoria gratuita.</p>
@@ -82,7 +117,7 @@ export default function Home() {
             <div className="visual-topline" aria-hidden="true"><span>QUIPU — CONEXIONES QUE TRANSFORMAN</span><span className="crosshair">+</span></div>
             <div className="visual-caption"><span className="caption-line" /><span>Todo empieza con una conexión.</span><span className="crosshair">+</span></div>
           </div>
-          <div className="hero-baseline"><span>RAÍCES PROFUNDAS. VISIÓN HACIA ADELANTE.</span><a href="#servicios" aria-label="Explorar nuestras especialidades"><span>EXPLORA LO QUE HACEMOS</span><span className="scroll-arrow">↓</span></a></div>
+          <div className="hero-baseline"><span>RAÍCES PROFUNDAS. VISIÓN HACIA ADELANTE.</span><a href="#servicios" aria-label="Explora lo que hacemos"><span>EXPLORA LO QUE HACEMOS</span><span className="scroll-arrow" aria-hidden="true">↓</span></a></div>
         </section>
         <section className="vision section-divider container" aria-labelledby="services-title">
           <div className="vision-heading" id="servicios" tabIndex={-1}>
@@ -92,7 +127,7 @@ export default function Home() {
           </div>
           <div className="pillars">
             {services.map((service) => (
-              <article className="pillar" key={service.number}>
+              <article className="pillar" id={`servicio-${service.type}`} key={service.number}>
                 <div className="pillar-top"><ServiceIcon type={service.type} /><span>{service.number} /</span></div>
                 <h3>{service.title}</h3>
                 <p>{service.description}</p>
@@ -146,9 +181,9 @@ export default function Home() {
             <p>Cuéntanos qué quieres mejorar. La primera reunión exploratoria es gratuita y nos permite entender tu necesidad y definir el siguiente paso.</p>
           </div>
           <div className="contact-actions">
-            <a className="primary-link" href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Escríbenos por WhatsApp (abre una nueva pestaña)">Escríbenos por WhatsApp <Arrow diagonal /></a>
+            <a className="primary-link" href={whatsappUrl} target="_blank" rel="noopener noreferrer" data-contact-channel="whatsapp" data-contact-location="contact" aria-label="Escríbenos por WhatsApp (abre una nueva pestaña)">Escríbenos por WhatsApp <Arrow diagonal /></a>
             <span className="contact-number">+51 943 526 621</span>
-            <a className="email-link" href="mailto:contacto@quipusystems.dev">contacto@quipusystems.dev <Arrow diagonal /></a>
+            <a className="email-link" href={`mailto:${site.email}`} data-contact-channel="email" data-contact-location="contact">{site.email} <Arrow diagonal /></a>
           </div>
           <div className="closing-note"><span className="status-dot" /><p>Nuestra nueva web está en construcción. Las buenas conexiones empiezan hoy.</p><span className="closing-tag">PRÓXIMAMENTE</span></div>
         </section>

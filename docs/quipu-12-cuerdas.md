@@ -1,6 +1,6 @@
 # Quipu Systems: concepto de 12 cuerdas
 
-Archivo: `public/images/quipu-systems-12-cuerdas.png`.
+Archivo: `assets/archive/quipus/quipu-systems-12-cuerdas.png`.
 Método: herramienta integrada `image_gen`, una generación y tres correcciones.
 
 ## Resultado y precisión

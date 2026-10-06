@@ -2,7 +2,7 @@
 
 La portada utiliza `src/components/3d/QuipuViewer.tsx` y el modelo real
 `public/models/quipu-spanish-alphabet.glb`, reconstruido tomando como referencia
-`public/images/quipu-spanish-alphabet.png`. Las caras posteriores se han modelado
+`assets/references/quipu-spanish-alphabet.png`. Las caras posteriores se han modelado
 por interpretación: una sola imagen no contiene esa geometría oculta.
 
 El modelo conserva cinco cuerdas, la central turquesa, las trenzas, los amarres,

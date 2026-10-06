@@ -2,7 +2,7 @@
 
 Resultado no validado: tras una generación y cinco correcciones mediante la herramienta integrada image_gen, persisten errores de cantidad y ubicación de nudos. Algunas correcciones alteraron cuerdas no solicitadas. La imagen final no codifica fielmente QUIPU SYSTEMS y no debe presentarse como exacta.
 
-Archivo: public/images/quipu-numerico-intento-no-validado.png
+Archivo: assets/archive/quipus/quipu-numerico-intento-no-validado.png
 
 El prompt original anterior se conserva sin modificaciones en docs/quipu-prompt-original.txt. Las especificaciones numéricas previstas están en docs/quipu-12-cuerdas.md.
 

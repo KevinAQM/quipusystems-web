@@ -1,6 +1,6 @@
 # QUIPU — ajuste de separación entre nudos
 
-Archivo original preservado: `public/images/quipu-spanish-alphabet.png`.
+Archivo original preservado: `assets/references/quipu-spanish-alphabet.png`.
 Archivo seleccionado: `public/images/quipu-spanish-alphabet-close-knots.png`.
 Método: herramienta integrada `image_gen`.
 

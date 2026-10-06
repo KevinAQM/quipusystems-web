@@ -1,15 +1,20 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import Image from "next/image";
 
 type ViewerActions = { reset: () => void; rotate: (horizontal: number, vertical: number) => void };
+const subscribe = () => () => {};
 
 export default function QuipuViewer() {
   const viewport = useRef<HTMLDivElement>(null);
   const actions = useRef<ViewerActions | null>(null);
-  const [status, setStatus] = useState<"loading" | "ready" | "unavailable">("loading");
+  const [status, setStatus] = useState<"idle" | "loading" | "ready" | "unavailable">("idle");
+  const [activation, setActivation] = useState(0);
+  const interactive = useSyncExternalStore(subscribe, () => true, () => false);
 
   useEffect(() => {
+    if (activation === 0) return;
     const container = viewport.current;
     if (!container) return;
     let disposed = false;
@@ -242,10 +247,22 @@ export default function QuipuViewer() {
       abort.abort();
       cleanup?.();
     };
-  }, []);
+  }, [activation]);
 
   return (
     <div className="quipu-viewer" data-state={status} aria-busy={status === "loading"}>
+      {status !== "ready" && (
+        <div className="quipu-poster">
+          <Image
+            src="/images/quipu-front.webp"
+            alt="Vista frontal del quipu de cinco cuerdas, con la cuerda central turquesa"
+            fill
+            sizes="(max-width: 700px) 100vw, (max-width: 1050px) 55vw, 650px"
+            loading="eager"
+            fetchPriority="high"
+          />
+        </div>
+      )}
       <div
         ref={viewport}
         className="quipu-viewport"
@@ -270,12 +287,23 @@ export default function QuipuViewer() {
       />
       <div className="quipu-controls">
         <p id="quipu-instructions" aria-live="polite">
-          {status === "ready" ? <>Arrastra para girar <span aria-hidden="true">· 360°</span><span className="sr-only">. También puedes usar las flechas del teclado e Inicio para volver a la vista frontal.</span></> : status === "loading" ? "Preparando vista 3D…" : "Vista 3D no disponible en este dispositivo."}
+          {status === "ready" ? <>Arrastra para girar <span aria-hidden="true">· 360°</span><span className="sr-only">. También puedes usar las flechas del teclado e Inicio para volver a la vista frontal.</span></> : status === "loading" ? "Preparando vista 3D…" : status === "unavailable" ? "Mostrando la vista frontal. No se pudo iniciar el 3D." : "Vista frontal del quipu"}
         </p>
+        {status !== "ready" && (
+          <button
+            className="quipu-launch"
+            type="button"
+            disabled={!interactive || status === "loading"}
+            onClick={() => { setStatus("loading"); setActivation((value) => value + 1); }}
+          >
+            {status === "loading" ? "Cargando…" : status === "unavailable" ? "Reintentar 3D" : "Explorar en 3D"}
+          </button>
+        )}
         {status === "ready" && (
           <button type="button" onClick={() => actions.current?.reset()} aria-label="Restablecer la vista frontal del quipu">Vista frontal <span aria-hidden="true">↺</span></button>
         )}
       </div>
+      <noscript><p className="quipu-noscript">Activa JavaScript para explorar el quipu en 3D.</p></noscript>
     </div>
   );
 }

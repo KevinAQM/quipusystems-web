@@ -1,11 +1,11 @@
 # Quipu Systems — imagen v2
 
-Archivo: `public/images/quipu-systems-v2.png`.
+Archivo: `assets/archive/quipus/quipu-systems-v2.png`.
 Método: herramienta integrada `image_gen`, una generación con cuatro referencias visuales.
 
 ## Lectura de las referencias
 
-Se revisaron las ocho imágenes de la carpeta `public/images/references`. Se observan una cuerda principal, cordones colgantes unidos mediante amarres, longitudes y grosores variables, nudos simples y agrupaciones de vueltas en distintas alturas, algunas ramificaciones y agrupaciones de colores. El esquema `quipu2.gif` presenta nudos distribuidos en niveles rotulados como miles, centenas, decenas y unidades. Estas observaciones guían la forma; no se atribuye un significado numérico al render generado.
+Se revisaron las ocho imágenes de la carpeta `assets/references/quipus`. Se observan una cuerda principal, cordones colgantes unidos mediante amarres, longitudes y grosores variables, nudos simples y agrupaciones de vueltas en distintas alturas, algunas ramificaciones y agrupaciones de colores. El esquema `quipu2.gif` presenta nudos distribuidos en niveles rotulados como miles, centenas, decenas y unidades. Estas observaciones guían la forma; no se atribuye un significado numérico al render generado.
 
 La nueva imagen mantiene esa estructura y utiliza grafito, plata y turquesa para vincularla con la identidad de Quipu Systems. Es una interpretación contemporánea de marca, no una reconstrucción arqueológica.
 

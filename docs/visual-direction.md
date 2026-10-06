@@ -21,7 +21,7 @@ Fuente del contenido: manual de marca, dossier y catálogo vigentes de la biblio
 
 ## Recurso generado histórico
 
-- Archivo: `public/images/quipu-knot.png` (1254 × 1254).
+- Archivo: `assets/archive/quipus/quipu-knot.png` (1254 × 1254).
 - Método: herramienta integrada `image_gen`, una generación.
 - Uso: ilustración conceptual de marca; no representa un producto físico.
 

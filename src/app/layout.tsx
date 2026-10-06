@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import ContactAnalytics from "@/components/ContactAnalytics";
+import { site } from "@/lib/site";
 import "./globals.css";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
@@ -12,9 +15,12 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.quipusystems.dev"),
-  title: "Quipu Systems | Software, datos e inteligencia artificial",
-  description: "Software a medida, datos e inteligencia artificial para conectar y mejorar los procesos de tu empresa. Conversemos sobre tu proyecto. Primera reunión gratuita.",
+  metadataBase: new URL(site.url),
+  title: site.title,
+  description: site.description,
+  applicationName: site.name,
+  robots: { index: true, follow: true },
+  verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION },
   alternates: { canonical: "/" },
   icons: {
     icon: [
@@ -24,10 +30,10 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-icon.png" }],
   },
   openGraph: {
-    title: "Quipu Systems | El futuro se construye conectando",
-    description: "Software a medida, datos e inteligencia artificial para tu empresa. Nuestra nueva web está en camino. Las buenas conexiones empiezan hoy.",
-    url: "https://www.quipusystems.dev",
-    siteName: "Quipu Systems",
+    title: site.socialTitle,
+    description: site.socialDescription,
+    url: site.url,
+    siteName: site.name,
     images: [
       {
         url: "/og-image.jpg",
@@ -41,8 +47,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Quipu Systems | El futuro se construye conectando",
-    description: "Software a medida, datos e inteligencia artificial para tu empresa. Nuestra nueva web está en camino. Las buenas conexiones empiezan hoy.",
+    title: site.socialTitle,
+    description: site.socialDescription,
     images: ["/og-image.jpg"],
   },
 };
@@ -59,6 +65,8 @@ export default function RootLayout({
     >
       <body>
         {children}
+        {process.env.NEXT_PUBLIC_WEB_ANALYTICS !== "false" && <Analytics />}
+        {process.env.NEXT_PUBLIC_WEB_ANALYTICS !== "false" && <ContactAnalytics />}
       </body>
     </html>
   );
