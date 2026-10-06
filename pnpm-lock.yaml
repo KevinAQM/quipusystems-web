@@ -73,8 +73,8 @@ importers:
         specifier: ^4
         version: 4.3.3
       three-mesh-bvh:
-        specifier: ^0.9.14
-        version: 0.9.14(three@0.185.1)
+        specifier: ^0.9.15
+        version: 0.9.15(three@0.185.1)
       typescript:
         specifier: ^5
         version: 5.9.3
@@ -2041,8 +2041,8 @@ packages:
     resolution: {integrity: sha512-uxc/zpqFg6x7C8vOE7lh6Lbda8eEL9zmVm/PLeTPBRhh1xCgdWaQ+J1CUieGpIfm2HdtsUpRv+HshiasBMcc6A==}
     engines: {node: '>=6'}
 
-  three-mesh-bvh@0.9.14:
-    resolution: {integrity: sha512-xJzfUXnLYjgw5tRKGxjfJW3Pcx0IbwNskvpdwRryhK07SYrKrYB4W8zAaPxu784gK7G4lCBgG+vfG3YeYn95kg==}
+  three-mesh-bvh@0.9.15:
+    resolution: {integrity: sha512-9xdEDkCzFoT8VPFH9DznwFSdbaIEjMvM106Iqq7TJurrIheUKDcdW4prfJTCxryih4XS/UxWs0H3K4MLMRFyOQ==}
     peerDependencies:
       three: '>= 0.159.0'
 
@@ -4261,7 +4261,7 @@ snapshots:
 
   tapable@2.3.3: {}
 
-  three-mesh-bvh@0.9.14(three@0.185.1):
+  three-mesh-bvh@0.9.15(three@0.185.1):
     dependencies:
       three: 0.185.1
 
